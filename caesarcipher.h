@@ -7,13 +7,12 @@
 class caesarCipher
 {
 public:
-    caesarCipher(QString, QString, int);
-    QString encryption(QString);
-    QString decryption(QString);
+    caesarCipher(QString, QString);
+    QString encryption(QString, int);
+    QString decryption(QString, int);
 private:
     QString alphabet;
     QString alphabet_upper;
-    int step;
 };
 
 #endif // CAESARCIPHER_H

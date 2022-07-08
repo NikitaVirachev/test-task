@@ -82,24 +82,24 @@ void MainWindow::on_encryption_clicked()
 {
     if (caesar == nullptr)
     {
-        caesar = new caesarCipher(alphabet, alphabet_upper, ui->lineEdit->text().toInt());
+        caesar = new caesarCipher(alphabet, alphabet_upper);
     }
 
-    writeInFile(caesar->encryption(data));
+    writeInFile(caesar->encryption(data, ui->lineEdit->text().toInt()));
 
-    ui->output_text->setPlainText(caesar->encryption(data));
+    ui->output_text->setPlainText(caesar->encryption(data, ui->lineEdit->text().toInt()));
 }
 
 void MainWindow::on_decryption_clicked()
 {
     if (caesar == nullptr)
     {
-        caesar = new caesarCipher(alphabet, alphabet_upper, ui->lineEdit->text().toInt());
+        caesar = new caesarCipher(alphabet, alphabet_upper);
     }
 
-    writeInFile(caesar->decryption(data));
+    writeInFile(caesar->decryption(data, ui->lineEdit->text().toInt()));
 
-    ui->output_text->setPlainText(caesar->decryption(data));
+    ui->output_text->setPlainText(caesar->decryption(data, ui->lineEdit->text().toInt()));
 }
 
 void MainWindow::on_lineEdit_textChanged(const QString &arg1)

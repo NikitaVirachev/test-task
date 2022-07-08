@@ -1,13 +1,12 @@
 #include "caesarcipher.h"
 
-caesarCipher::caesarCipher(QString alphabet, QString alphabet_upper, int step)
+caesarCipher::caesarCipher(QString alphabet, QString alphabet_upper)
 {
     this->alphabet = alphabet;
     this->alphabet_upper = alphabet_upper;
-    this->step = step;
 }
 
-QString caesarCipher::encryption(QString text)
+QString caesarCipher::encryption(QString text, int key)
 {
     QString result;
 
@@ -15,24 +14,24 @@ QString caesarCipher::encryption(QString text)
     {
         if (alphabet.contains(c))
         {
-            if (alphabet.indexOf(c) + step > alphabet.length() - 1)
+            if (alphabet.indexOf(c) + key > alphabet.length() - 1)
             {
-                result.append(alphabet[(alphabet.indexOf(c) + step) % alphabet.length()]);
+                result.append(alphabet[(alphabet.indexOf(c) + key) % alphabet.length()]);
             }
             else
             {
-                result.append(alphabet[alphabet.indexOf(c) + step]);
+                result.append(alphabet[alphabet.indexOf(c) + key]);
             }
         }
         else if (alphabet_upper.contains(c))
         {
-            if (alphabet_upper.indexOf(c) + step > alphabet.length() - 1)
+            if (alphabet_upper.indexOf(c) + key > alphabet.length() - 1)
             {
-                result.append(alphabet_upper[(alphabet_upper.indexOf(c) + step) % alphabet_upper.length()]);
+                result.append(alphabet_upper[(alphabet_upper.indexOf(c) + key) % alphabet_upper.length()]);
             }
             else
             {
-                result.append(alphabet_upper[alphabet_upper.indexOf(c) + step]);
+                result.append(alphabet_upper[alphabet_upper.indexOf(c) + key]);
             }
         }
         else
@@ -44,7 +43,7 @@ QString caesarCipher::encryption(QString text)
     return result;
 }
 
-QString caesarCipher::decryption(QString text)
+QString caesarCipher::decryption(QString text, int key)
 {
     QString result;
 
@@ -52,24 +51,24 @@ QString caesarCipher::decryption(QString text)
     {
         if (alphabet.contains(c))
         {
-            if (alphabet.indexOf(c) - step < 0)
+            if (alphabet.indexOf(c) - key < 0)
             {
-                result.append(alphabet[(alphabet.indexOf(c) - step) + alphabet.length()]);
+                result.append(alphabet[(alphabet.indexOf(c) - key) + alphabet.length()]);
             }
             else
             {
-                result.append(alphabet[alphabet.indexOf(c) - step]);
+                result.append(alphabet[alphabet.indexOf(c) - key]);
             }
         }
         else if (alphabet_upper.contains(c))
         {
-            if (alphabet_upper.indexOf(c) - step < 0)
+            if (alphabet_upper.indexOf(c) - key < 0)
             {
-                result.append(alphabet_upper[(alphabet_upper.indexOf(c) - step) + alphabet_upper.length()]);
+                result.append(alphabet_upper[(alphabet_upper.indexOf(c) - key) + alphabet_upper.length()]);
             }
             else
             {
-                result.append(alphabet_upper[alphabet_upper.indexOf(c) - step]);
+                result.append(alphabet_upper[alphabet_upper.indexOf(c) - key]);
             }
         }
         else

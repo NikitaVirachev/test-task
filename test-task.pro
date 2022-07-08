@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui testlib
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     caesarcipher.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    tests.cpp
 
 HEADERS += \
     caesarcipher.h \
-    mainwindow.h
+    mainwindow.h \
+    tests.h
 
 FORMS += \
     mainwindow.ui

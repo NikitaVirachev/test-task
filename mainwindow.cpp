@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    ui->lineEdit->setValidator(new QIntValidator(nullptr));
+
     ui->baseText->setEnabled(false);
     ui->encryption->setEnabled(false);
     ui->decryption->setEnabled(false);
@@ -52,9 +54,43 @@ void MainWindow::on_pushButton_clicked()
     {
         ui->baseText->setPlainText(data);
         ui->lineEdit->setEnabled(true);
+        ui->encryption->setEnabled(true);
+        ui->decryption->setEnabled(true);
     } else
     {
         data.clear();
         QMessageBox::warning(this, "Ошибка","В файле присутсвует не кириллический текст");
     }
+}
+
+void MainWindow::on_encryption_clicked()
+{
+    if (ui->lineEdit->text().isEmpty())
+    {
+        QMessageBox::warning(this, "Ошибка","Задайте сдвиг");
+        return;
+    }
+
+    if (caesar == nullptr)
+    {
+        caesar = new caesarCipher(alphabet, alphabet_upper, ui->lineEdit->text().toInt());
+    }
+
+    ui->output_text->setPlainText(caesar->encryption(data));
+}
+
+void MainWindow::on_decryption_clicked()
+{
+    if (ui->lineEdit->text().isEmpty())
+    {
+        QMessageBox::warning(this, "Ошибка","Задайте сдвиг");
+        return;
+    }
+
+    if (caesar == nullptr)
+    {
+        caesar = new caesarCipher(alphabet, alphabet_upper, ui->lineEdit->text().toInt());
+    }
+
+    ui->output_text->setPlainText(caesar->decryption(data));
 }

@@ -26,11 +26,13 @@ public:
 
     QString readFile();
     bool isCyrillic(QString);
+    void writeInFile(QString);
 
     const QString alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
     const QString alphabet_upper = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
     const QString special_char = " ,.:;!?-+=/|\\`~'\"@#№$%^&*(){}[]0123456789";
 
+    QString fileName;
     QString data;
     caesarCipher* caesar = nullptr;
 

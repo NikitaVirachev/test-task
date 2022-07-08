@@ -78,7 +78,7 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>Задать сдвиг</string>
+                 <string>Задать ключ</string>
                 </property>
                </widget>
               </item>

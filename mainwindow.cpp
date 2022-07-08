@@ -23,15 +23,18 @@ MainWindow::~MainWindow()
 
 QString MainWindow::readFile()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Выбрать файл"), "C:/Users/nikit/Desktop", tr("Текстовые файлы (*.txt)"));
+    fileName = QFileDialog::getOpenFileName(this, tr("Выбрать файл"), "C:/Users/nikit/Desktop", tr("Текстовые файлы (*.txt)"));
     QFile file(fileName);
 
     if (!file.open(QIODevice::ReadOnly))
         QMessageBox::warning(this, "Ошибка","Невозможно открыть файл");
 
     QTextStream in(&file);
+    QString data = QString(in.readAll().toLocal8Bit());
 
-    return QString(in.readAll().toLocal8Bit());
+    file.close();
+
+    return data;
 }
 
 bool MainWindow::isCyrillic(QString text)
@@ -45,6 +48,20 @@ bool MainWindow::isCyrillic(QString text)
     }
 
     return true;
+}
+
+void MainWindow::writeInFile(QString text)
+{
+    QString directoryPath = fileName.mid(0, fileName.lastIndexOf('/'));
+    directoryPath.append("/output.txt");
+
+    QFile file(directoryPath);
+    file.open(QIODevice::WriteOnly | QIODevice::Truncate);
+
+    QTextStream out(&file);
+    out << text;
+
+    file.close();
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -68,6 +85,8 @@ void MainWindow::on_encryption_clicked()
         caesar = new caesarCipher(alphabet, alphabet_upper, ui->lineEdit->text().toInt());
     }
 
+    writeInFile(caesar->encryption(data));
+
     ui->output_text->setPlainText(caesar->encryption(data));
 }
 
@@ -77,6 +96,8 @@ void MainWindow::on_decryption_clicked()
     {
         caesar = new caesarCipher(alphabet, alphabet_upper, ui->lineEdit->text().toInt());
     }
+
+    writeInFile(caesar->decryption(data));
 
     ui->output_text->setPlainText(caesar->decryption(data));
 }

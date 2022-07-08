@@ -41,6 +41,8 @@ private slots:
 
     void on_decryption_clicked();
 
+    void on_lineEdit_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
 };

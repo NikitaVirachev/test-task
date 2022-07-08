@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ui->lineEdit->setValidator(new QIntValidator(nullptr));
+    ui->lineEdit->setValidator(new QRegExpValidator(QRegExp("[0-9]*")));
 
     ui->baseText->setEnabled(false);
     ui->encryption->setEnabled(false);

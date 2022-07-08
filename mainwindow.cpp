@@ -29,9 +29,8 @@ QString MainWindow::readFile()
     if (!file.open(QIODevice::ReadOnly))
         QMessageBox::warning(this, "Ошибка","Невозможно открыть файл");
 
-    QTextStream in(&file);
-    QString data = QString(in.readAll().toLocal8Bit());
-
+    QString data = QString::fromUtf8(file.readAll());
+    qDebug() << data;
     file.close();
 
     return data;
@@ -59,6 +58,7 @@ void MainWindow::writeInFile(QString text)
     file.open(QIODevice::WriteOnly | QIODevice::Truncate);
 
     QTextStream out(&file);
+    out.setCodec("UTF-8");
     out << text;
 
     file.close();

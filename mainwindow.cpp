@@ -8,12 +8,20 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     ui->lineEdit->setValidator(new QRegExpValidator(QRegExp("[0-9]*")));
+    ui->lineEdit_3->setValidator(new QRegExpValidator(QRegExp("[0-9]*")));
+    ui->lineEdit_5->setValidator(new QRegExpValidator(QRegExp("[0-9]*")));
 
     ui->baseText->setEnabled(false);
     ui->encryption->setEnabled(false);
     ui->decryption->setEnabled(false);
     ui->lineEdit->setEnabled(false);
     ui->output_text->setEnabled(false);
+
+    ui->lineEdit_2->setEnabled(false);
+    ui->lineEdit_4->setEnabled(false);
+    ui->lineEdit_6->setEnabled(false);
+    ui->lineEdit_7->setEnabled(false);
+    ui->pushButton_2->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -113,5 +121,34 @@ void MainWindow::on_lineEdit_textChanged(const QString &arg1)
     {
         ui->encryption->setEnabled(false);
         ui->decryption->setEnabled(false);
+    }
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+
+}
+
+void MainWindow::on_lineEdit_3_textChanged(const QString &arg1)
+{
+    if (!ui->lineEdit_3->text().isEmpty() && !ui->lineEdit_5->text().isEmpty())
+    {
+        ui->pushButton_2->setEnabled(true);
+    }
+    else
+    {
+        ui->pushButton_2->setEnabled(false);
+    }
+}
+
+void MainWindow::on_lineEdit_5_textChanged(const QString &arg1)
+{
+    if (!ui->lineEdit_3->text().isEmpty() && !ui->lineEdit_5->text().isEmpty())
+    {
+        ui->pushButton_2->setEnabled(true);
+    }
+    else
+    {
+        ui->pushButton_2->setEnabled(false);
     }
 }

@@ -126,7 +126,27 @@ void MainWindow::on_lineEdit_textChanged(const QString &arg1)
 
 void MainWindow::on_pushButton_2_clicked()
 {
+    int g = ui->lineEdit_8->text().toInt();
+    int p = ui->lineEdit_9->text().toInt();
+    long int a = ui->lineEdit_3->text().toLong();
+    long int b = ui->lineEdit_5->text().toLong();
 
+    DiffieHellmanProtocol diffie_hellman;
+
+    int A = diffie_hellman.exponentiation(g, a, p).toInt();
+    int B = diffie_hellman.exponentiation(g, b, p).toInt();
+    QString aliceK = diffie_hellman.exponentiation(B, a, p);
+    QString bobK = diffie_hellman.exponentiation(A, b, p);
+
+    ui->lineEdit_2->setEnabled(true);
+    ui->lineEdit_4->setEnabled(true);
+    ui->lineEdit_6->setEnabled(true);
+    ui->lineEdit_7->setEnabled(true);
+
+    ui->lineEdit_2->setText(QString::number(A));
+    ui->lineEdit_6->setText(QString::number(B));
+    ui->lineEdit_4->setText(aliceK);
+    ui->lineEdit_7->setText(bobK);
 }
 
 void MainWindow::on_lineEdit_3_textChanged(const QString &arg1)
@@ -143,7 +163,10 @@ void MainWindow::on_lineEdit_3_textChanged(const QString &arg1)
 
 void MainWindow::on_lineEdit_5_textChanged(const QString &arg1)
 {
-    if (!ui->lineEdit_3->text().isEmpty() && !ui->lineEdit_5->text().isEmpty())
+    if (!ui->lineEdit_3->text().isEmpty() &&
+        !ui->lineEdit_5->text().isEmpty() &&
+        !ui->lineEdit_8->text().isEmpty() &&
+        !ui->lineEdit_9->text().isEmpty())
     {
         ui->pushButton_2->setEnabled(true);
     }

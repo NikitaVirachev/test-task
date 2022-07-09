@@ -17,12 +17,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     caesarcipher.cpp \
+    diffiehellmanprotocol.cpp \
     main.cpp \
     mainwindow.cpp \
     tests.cpp
 
 HEADERS += \
     caesarcipher.h \
+    diffiehellmanprotocol.h \
     mainwindow.h \
     tests.h
 

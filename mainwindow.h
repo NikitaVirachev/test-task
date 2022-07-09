@@ -11,6 +11,7 @@
 #include <QIntValidator>
 
 #include "caesarcipher.h"
+#include "diffiehellmanprotocol.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

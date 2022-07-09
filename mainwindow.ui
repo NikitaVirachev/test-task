@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>867</width>
-    <height>593</height>
+    <width>861</width>
+    <height>652</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -150,6 +150,64 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_9">
         <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_12">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_9">
+            <item>
+             <widget class="QLabel" name="label_10">
+              <property name="font">
+               <font>
+                <family>Times New Roman</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Число g</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lineEdit_8">
+              <property name="font">
+               <font>
+                <family>Times New Roman</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QLabel" name="label_11">
+              <property name="font">
+               <font>
+                <family>Times New Roman</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Число p</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lineEdit_9">
+              <property name="font">
+               <font>
+                <family>Times New Roman</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
            <widget class="QLabel" name="label_2">
@@ -177,7 +235,7 @@
                </font>
               </property>
               <property name="text">
-               <string>Число зёрен Алисы</string>
+               <string>Значение a, число зёрен Алисы</string>
               </property>
              </widget>
             </item>
@@ -276,7 +334,7 @@
                </font>
               </property>
               <property name="text">
-               <string>Число зёрен Боб</string>
+               <string>Значение b, число зёрен Боб</string>
               </property>
              </widget>
             </item>
@@ -406,7 +464,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>867</width>
+     <width>861</width>
      <height>26</height>
     </rect>
    </property>

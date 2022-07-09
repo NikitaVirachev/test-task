@@ -40,3 +40,28 @@ void Tests::testDecryption()
     QCOMPARE(caesar->decryption("Ъх раех ъс ьыьмшыюи ъм ьаях, ъх ыпъл фм юямоълщх!", 13),
              "Ни души не попалось на пути, ни огня за ставнями!");
 }
+
+void Tests::testExponentiation()
+{
+    DiffieHellmanProtocol diffie_hellman;
+
+    QCOMPARE(diffie_hellman.exponentiation(5, 6, 23), "8");
+    QCOMPARE(diffie_hellman.exponentiation(5, 15, 23), "19");
+    QCOMPARE(diffie_hellman.exponentiation(19, 6, 23), "2");
+    QCOMPARE(diffie_hellman.exponentiation(8, 15, 23), "2");
+
+    QCOMPARE(diffie_hellman.exponentiation(12, 123, 101), "35");
+    QCOMPARE(diffie_hellman.exponentiation(12, 345, 101), "60");
+    QCOMPARE(diffie_hellman.exponentiation(60, 123, 101), "62");
+    QCOMPARE(diffie_hellman.exponentiation(35, 345, 101), "62");
+
+    QCOMPARE(diffie_hellman.exponentiation(3, 97, 353), "40");
+    QCOMPARE(diffie_hellman.exponentiation(3, 233, 353), "248");
+    QCOMPARE(diffie_hellman.exponentiation(248, 97, 353), "160");
+    QCOMPARE(diffie_hellman.exponentiation(40, 233, 353), "160");
+
+    QCOMPARE(diffie_hellman.exponentiation(48, 765, 413), "41");
+    QCOMPARE(diffie_hellman.exponentiation(48, 543, 413), "405");
+    QCOMPARE(diffie_hellman.exponentiation(405, 765, 413), "370");
+    QCOMPARE(diffie_hellman.exponentiation(41, 543, 413), "370");
+}

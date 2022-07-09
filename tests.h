@@ -5,6 +5,7 @@
 #include <QtTest/QTest>
 
 #include "caesarcipher.h"
+#include "diffiehellmanprotocol.h"
 
 class Tests : public QObject
 {
@@ -17,6 +18,7 @@ signals:
 private slots:
     void testEncryption();
     void testDecryption();
+    void testExponentiation();
 };
 
 #endif // TESTS_H

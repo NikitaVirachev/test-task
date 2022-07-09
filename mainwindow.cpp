@@ -33,13 +33,16 @@ QString MainWindow::readFile()
 {
     fileName = QFileDialog::getOpenFileName(this, tr("Выбрать файл"), "C:/Users/nikit/Desktop", tr("Текстовые файлы (*.txt)"));
     QFile file(fileName);
+    QString data = "";
 
-    if (!file.open(QIODevice::ReadOnly))
+    try {
+        file.open(QIODevice::ReadOnly);
+        data = QString::fromUtf8(file.readAll());
+        file.close();
+    } catch (const std::exception& ex) {
+        qDebug() << ex.what();
         QMessageBox::warning(this, "Ошибка","Невозможно открыть файл");
-
-    QString data = QString::fromUtf8(file.readAll());
-    qDebug() << data;
-    file.close();
+    }
 
     return data;
 }

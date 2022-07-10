@@ -22,15 +22,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit_6->setEnabled(false);
     ui->lineEdit_7->setEnabled(false);
     ui->pushButton_2->setEnabled(false);
-
-    fileName = QDir::currentPath();
-    fileName.append("/input.txt");
-    QFile file(fileName);
-    file.open(QIODevice::WriteOnly);
-    QTextStream out(&file);
-    out.setCodec("UTF-8");
-    out << "";
-    file.close();
 }
 
 MainWindow::~MainWindow()
@@ -40,7 +31,7 @@ MainWindow::~MainWindow()
 
 QString MainWindow::readFile()
 {
-    fileName = QFileDialog::getOpenFileName(this, tr("Выбрать файл"), QDir::currentPath(), tr("Текстовые файлы (*.txt)"));
+    fileName = QFileDialog::getOpenFileName(this, tr("Выбрать файл"), "C:/Users/nikit/Desktop", tr("Текстовые файлы (*.txt)"));
     QFile file(fileName);
     QString data = "";
 

@@ -26,12 +26,12 @@ public:
     ~MainWindow();
 
     QString readFile();
-    bool isCyrillic(QString text);
+    bool isLatin(QString text);
     void writeInFile(QString text);
 
     const QString alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
     const QString alphabet_upper = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-    const QString special_char = " ,.:;!?-+=/|\\`~'\"@#№$%^&*(){}[]0123456789";
+    const QString latin_upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     QString fileName;
     QString data;

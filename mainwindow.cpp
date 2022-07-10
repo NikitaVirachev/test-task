@@ -22,6 +22,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit_6->setEnabled(false);
     ui->lineEdit_7->setEnabled(false);
     ui->pushButton_2->setEnabled(false);
+
+    fileName = QDir::currentPath();
+    fileName.append("/input.txt");
+    QFile file(fileName);
+    file.open(QIODevice::WriteOnly);
+    QTextStream out(&file);
+    out.setCodec("UTF-8");
+    out << "";
+    file.close();
 }
 
 MainWindow::~MainWindow()
@@ -31,7 +40,7 @@ MainWindow::~MainWindow()
 
 QString MainWindow::readFile()
 {
-    fileName = QFileDialog::getOpenFileName(this, tr("Выбрать файл"), "C:/Users/nikit/Desktop", tr("Текстовые файлы (*.txt)"));
+    fileName = QFileDialog::getOpenFileName(this, tr("Выбрать файл"), QDir::currentPath(), tr("Текстовые файлы (*.txt)"));
     QFile file(fileName);
     QString data = "";
 
@@ -47,17 +56,17 @@ QString MainWindow::readFile()
     return data;
 }
 
-bool MainWindow::isCyrillic(QString text)
+bool MainWindow::isLatin(QString text)
 {
     foreach(QChar c, text)
     {
-        if (!(alphabet_upper.contains(c.toUpper()) || special_char.contains(c)))
+        if (latin_upper.contains(c.toUpper()))
         {
-            return false;
+            return true;
         }
     }
 
-    return true;
+    return false;
 }
 
 void MainWindow::writeInFile(QString text)
@@ -78,8 +87,10 @@ void MainWindow::writeInFile(QString text)
 
 void MainWindow::on_pushButton_clicked()
 {
+    ui->output_text->clear();
+
     data = readFile(); //читаем файл
-    if (isCyrillic(data)) //проверяем, содержит ли он только кириллицу
+    if (!isLatin(data)) //проверяем, не содержит ли он латиницу
     {
         //позволяем ввести шаг
         ui->baseText->setPlainText(data);
@@ -87,7 +98,9 @@ void MainWindow::on_pushButton_clicked()
     } else
     {
         data.clear();
-        QMessageBox::warning(this, "Ошибка","В файле присутсвует не кириллический текст");
+        ui->baseText->clear();
+        ui->lineEdit->clear();
+        QMessageBox::warning(this, "Ошибка","В файле присутсвует латинский текст");
     }
 }
 

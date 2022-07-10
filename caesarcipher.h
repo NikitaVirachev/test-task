@@ -7,9 +7,9 @@
 class caesarCipher
 {
 public:
-    caesarCipher(QString, QString);
-    QString encryption(QString, int);
-    QString decryption(QString, int);
+    caesarCipher(QString alphabet, QString alphabet_upper);
+    QString encryption(QString text, int key);
+    QString decryption(QString text, int key);
 private:
     QString alphabet;
     QString alphabet_upper;

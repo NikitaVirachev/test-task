@@ -26,8 +26,8 @@ public:
     ~MainWindow();
 
     QString readFile();
-    bool isCyrillic(QString);
-    void writeInFile(QString);
+    bool isCyrillic(QString text);
+    void writeInFile(QString text);
 
     const QString alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
     const QString alphabet_upper = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";

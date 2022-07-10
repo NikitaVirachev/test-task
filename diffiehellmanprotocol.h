@@ -8,7 +8,6 @@
 class DiffieHellmanProtocol
 {
 public:
-    DiffieHellmanProtocol();
     QString exponentiation(int base, int degree, int divider);
 };
 

@@ -1,10 +1,5 @@
 #include "diffiehellmanprotocol.h"
 
-DiffieHellmanProtocol::DiffieHellmanProtocol()
-{
-
-}
-
 QString DiffieHellmanProtocol::exponentiation(int base, int degree, int divider)
 {
     int n = 0;

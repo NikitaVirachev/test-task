@@ -45,30 +45,30 @@ QString caesarCipher::encryption(QString text, int key)
 
 QString caesarCipher::decryption(QString text, int key)
 {
-    QString result;
+    QString result = "";
 
     foreach(QChar c, text)
     {
         if (alphabet.contains(c))
         {
-            if (alphabet.indexOf(c) - key < 0)
+            if (alphabet.indexOf(c) - (key % alphabet.length()) < 0)
             {
-                result.append(alphabet[(alphabet.indexOf(c) - key) + alphabet.length()]);
+                result.append(alphabet.at((alphabet.indexOf(c) - (key % alphabet.length())) + alphabet.length()));
             }
             else
             {
-                result.append(alphabet[alphabet.indexOf(c) - key]);
+                result.append(alphabet[alphabet.indexOf(c) - (key % alphabet.length())]);
             }
         }
         else if (alphabet_upper.contains(c))
         {
-            if (alphabet_upper.indexOf(c) - key < 0)
+            if (alphabet_upper.indexOf(c) - (key % alphabet_upper.length()) < 0)
             {
-                result.append(alphabet_upper[(alphabet_upper.indexOf(c) - key) + alphabet_upper.length()]);
+                result.append(alphabet_upper[(alphabet_upper.indexOf(c) - (key % alphabet_upper.length())) + alphabet_upper.length()]);
             }
             else
             {
-                result.append(alphabet_upper[alphabet_upper.indexOf(c) - key]);
+                result.append(alphabet_upper[alphabet_upper.indexOf(c) - (key % alphabet_upper.length())]);
             }
         }
         else

@@ -47,17 +47,17 @@ QString MainWindow::readFile()
     return data;
 }
 
-bool MainWindow::isCyrillic(QString text)
+bool MainWindow::isLatin(QString text)
 {
     foreach(QChar c, text)
     {
-        if (!(alphabet_upper.contains(c.toUpper()) || special_char.contains(c)))
+        if (latin_upper.contains(c.toUpper()))
         {
-            return false;
+            return true;
         }
     }
 
-    return true;
+    return false;
 }
 
 void MainWindow::writeInFile(QString text)
@@ -78,8 +78,10 @@ void MainWindow::writeInFile(QString text)
 
 void MainWindow::on_pushButton_clicked()
 {
+    ui->output_text->clear();
+
     data = readFile(); //читаем файл
-    if (isCyrillic(data)) //проверяем, содержит ли он только кириллицу
+    if (!isLatin(data)) //проверяем, не содержит ли он латиницу
     {
         //позволяем ввести шаг
         ui->baseText->setPlainText(data);
@@ -87,7 +89,9 @@ void MainWindow::on_pushButton_clicked()
     } else
     {
         data.clear();
-        QMessageBox::warning(this, "Ошибка","В файле присутсвует не кириллический текст");
+        ui->baseText->clear();
+        ui->lineEdit->clear();
+        QMessageBox::warning(this, "Ошибка","В файле присутсвует латинский текст");
     }
 }
 

@@ -62,6 +62,7 @@ bool MainWindow::isCyrillic(QString text)
 
 void MainWindow::writeInFile(QString text)
 {
+    //файл вывода создаётся в той же директории, где и исходный файл
     QString directoryPath = fileName.mid(0, fileName.lastIndexOf('/'));
     directoryPath.append("/output.txt");
 
@@ -77,9 +78,10 @@ void MainWindow::writeInFile(QString text)
 
 void MainWindow::on_pushButton_clicked()
 {
-    data = readFile();
-    if (isCyrillic(data))
+    data = readFile(); //читаем файл
+    if (isCyrillic(data)) //проверяем, содержит ли он только кириллицу
     {
+        //позволяем ввести шаг
         ui->baseText->setPlainText(data);
         ui->lineEdit->setEnabled(true);
     } else
@@ -91,11 +93,13 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_encryption_clicked()
 {
+    //создаём объект класса caesarCipher, если он ещё не существует
     if (caesar == nullptr)
     {
         caesar = new caesarCipher(alphabet, alphabet_upper);
     }
 
+    //записываем в файл результаты шифрования
     writeInFile(caesar->encryption(data, ui->lineEdit->text().toInt()));
 
     ui->output_text->setPlainText(caesar->encryption(data, ui->lineEdit->text().toInt()));
@@ -103,11 +107,13 @@ void MainWindow::on_encryption_clicked()
 
 void MainWindow::on_decryption_clicked()
 {
+    //создаём объект класса caesarCipher, если он ещё не существует
     if (caesar == nullptr)
     {
         caesar = new caesarCipher(alphabet, alphabet_upper);
     }
 
+    //записываем в файл результаты шифрования
     writeInFile(caesar->decryption(data, ui->lineEdit->text().toInt()));
 
     ui->output_text->setPlainText(caesar->decryption(data, ui->lineEdit->text().toInt()));
@@ -136,6 +142,7 @@ void MainWindow::on_pushButton_2_clicked()
 
     DiffieHellmanProtocol diffie_hellman;
 
+    //метод exponentiation реализует формулу (a^b) mod c
     int A = diffie_hellman.exponentiation(g, a, p).toInt();
     int B = diffie_hellman.exponentiation(g, b, p).toInt();
     QString aliceK = diffie_hellman.exponentiation(B, a, p);

@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit_6->setEnabled(false);
     ui->lineEdit_7->setEnabled(false);
     ui->pushButton_2->setEnabled(false);
+    //test
 }
 
 MainWindow::~MainWindow()
